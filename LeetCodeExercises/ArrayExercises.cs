@@ -1,6 +1,8 @@
-﻿namespace LeetCodeExercises
+﻿using System;
+
+namespace LeetCodeExercises
 {
-    public static class Array
+    public static class ArrayExercises
     {
         // Remove Duplicates from Sorted Array
         public static int RemoveDuplicates(int[] nums)
@@ -32,6 +34,24 @@
             }
 
             return maxProfit;
+        }
+
+        // Rotate Array 
+        // time O(N)
+        // memory O(N)
+        public static int[] Rotate(int[] nums, int k)
+        {
+            if (nums == null || nums.Length <= 0 || k <= 0)
+                return nums;
+
+            int[] tmp = new int[nums.Length];
+            for (int i = 0; i < nums.Length; i++) {
+                tmp[(i + k) % nums.Length] = nums[i];
+            }
+
+            Array.Copy(tmp, nums, nums.Length);
+
+            return nums;
         }
     }
 }
