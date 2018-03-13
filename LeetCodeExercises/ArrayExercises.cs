@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LeetCodeExercises
 {
@@ -38,7 +39,7 @@ namespace LeetCodeExercises
 
         // Rotate Array 
         // time O(N)
-        // memory O(N)
+        // space O(N)
         public static int[] Rotate(int[] nums, int k)
         {
             if (nums == null || nums.Length <= 0 || k <= 0)
@@ -52,6 +53,65 @@ namespace LeetCodeExercises
             Array.Copy(tmp, nums, nums.Length);
 
             return nums;
+        }
+
+        // Find All Duplicates in an Array [Time Limit Exceeded]
+        // time O(N2)
+        // space O(1)
+        public static IList<int> FindDuplicatesBruteForce(int[] nums)
+        {
+            var result = new List<int>();
+
+            for (int i = 0; i < nums.Length; i++) {
+                for (int j = 0; j < nums.Length; j++) {
+                    if (i == j)
+                        continue;
+
+                    if (result.Contains(nums[i]))
+                        continue;
+
+                    if (nums[i] == nums[j])
+                        result.Add(nums[i]);
+                }
+            }
+
+            return result;
+        }
+
+        // Find All Duplicates in an Array
+        // time O(N)
+        // space O(N)
+        public static IList<int> FindDuplicatesTimeOptimization(int[] nums)
+        {
+            var result = new List<int>();
+
+            var hashSet = new HashSet<int>();
+            foreach (int n in nums) {
+                if (hashSet.Contains(n)) {
+                    result.Add(n);
+                } else {
+                    hashSet.Add(n);
+                }
+            }
+
+            return result;
+        }
+
+        // Find All Duplicates in an Array
+        // time O(N)
+        // space O(1)
+        public static IList<int> FindDuplicates(int[] nums)
+        {
+            var result = new List<int>();
+            foreach (int n in nums) {
+                int index = Math.Abs(n) - 1;
+                if (nums[index] > 0) {
+                    nums[index] = -nums[index];
+                } else {
+                    result.Add(index + 1);
+                }
+            }
+            return result;
         }
     }
 }

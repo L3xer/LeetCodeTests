@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using LeetCodeExercises;
+using System.Linq;
 
 namespace UnitTests
 {
@@ -26,6 +27,15 @@ namespace UnitTests
         public void RotateTest(int[] nums, int k, int[] expected)
         {
             int[] actual = ArrayExercises.Rotate(nums, k);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 4, 3, 2, 7, 8, 2, 3, 1 }, new int[] { 2, 3 })]
+        public void FindDuplicatesTest(int[] nums, int[] expected)
+        {
+            int[] actual = ArrayExercises.FindDuplicates(nums).ToArray();
 
             Assert.Equal(expected, actual);
         }
