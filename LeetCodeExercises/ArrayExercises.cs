@@ -62,14 +62,8 @@ namespace LeetCodeExercises
         {
             var result = new List<int>();
 
-            for (int i = 0; i < nums.Length; i++) {
-                for (int j = 0; j < nums.Length; j++) {
-                    if (i == j)
-                        continue;
-
-                    if (result.Contains(nums[i]))
-                        continue;
-
+            for (int i = 0; i < nums.Length - 1; i++) {
+                for (int j = i + 1; j < nums.Length; j++) {
                     if (nums[i] == nums[j])
                         result.Add(nums[i]);
                 }
